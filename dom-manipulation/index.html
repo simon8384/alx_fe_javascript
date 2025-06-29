@@ -7,7 +7,8 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            background: #f4f4f4;
+            background: #f4f6fa;
+            color: #222;
             margin: 0;
             padding: 0;
             display: flex;
@@ -17,74 +18,61 @@
         }
         h1 {
             margin-top: 40px;
-            color: #333;
+            margin-bottom: 30px;
+            color: #3a3a3a;
         }
         #quoteDisplay {
             background: #fff;
             border-radius: 8px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-            padding: 24px 32px;
-            margin: 32px 0 16px 0;
-            min-width: 300px;
-            min-height: 60px;
-            font-size: 1.2rem;
-            color: #444;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+            padding: 30px 40px;
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            min-width: 320px;
             text-align: center;
+            transition: box-shadow 0.2s;
         }
-        button {
+        #newQuote {
             background: #0078d7;
             color: #fff;
             border: none;
-            border-radius: 4px;
-            padding: 10px 18px;
+            border-radius: 5px;
+            padding: 12px 28px;
             font-size: 1rem;
             cursor: pointer;
-            margin: 8px 4px;
             transition: background 0.2s;
         }
-        button:hover {
+        #newQuote:hover {
             background: #005fa3;
         }
-        input[type="text"] {
-            padding: 8px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            margin: 8px 4px;
-            font-size: 1rem;
-            width: 180px;
-        }
-        div {
+        div[style] {
+            margin-top: 25px !important;
             display: flex;
-            justify-content: center;
+            gap: 12px;
             align-items: center;
-            flex-wrap: wrap;
         }
-        @media (max-width: 600px) {
-            #quoteDisplay {
-                min-width: 180px;
-                padding: 16px;
-                font-size: 1rem;
-            }
-            input[type="text"] {
-                width: 120px;
-            }
+        input[type="file"] {
+            font-size: 1rem;
+        }
+        button {
+            font-family: inherit;
         }
     </style>
 </head>
 <body>
     <h1>Dynamic Quote Generator</h1>
-    
-    <!-- Quote display section -->
-    <div id="quoteDisplay"></div>
+
+    <!-- Quote display -->
+    <div id="quoteDisplay">Click the button to see a quote</div>
     <button id="newQuote">Show New Quote</button>
 
-    <!-- Form to add new quotes -->
-    <div>
-        <input id="newQuoteText" type="text" placeholder="Enter a new quote" />
-        <input id="newQuoteCategory" type="text" placeholder="Enter quote category" />
-        <button id="addQuoteBtn">Add Quote</button>
+    <!-- Import/export buttons -->
+    <div style="margin-top: 15px;">
+        <input type="file" id="importFile" accept=".json" onchange="importFromJsonFile(event)" />
+        <button onclick="exportToJsonFile()">Export Quotes as JSON</button>
     </div>
 
+    <!-- Form will be created dynamically -->
     <script src="script.js"></script>
 </body>
 </html>
