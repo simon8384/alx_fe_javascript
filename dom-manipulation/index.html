@@ -1,78 +1,143 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Dynamic Quote Generator</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background: #f4f6fa;
-            color: #222;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            min-height: 100vh;
-        }
-        h1 {
-            margin-top: 40px;
-            margin-bottom: 30px;
-            color: #3a3a3a;
-        }
-        #quoteDisplay {
-            background: #fff;
-            border-radius: 8px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.07);
-            padding: 30px 40px;
-            font-size: 1.3rem;
-            margin-bottom: 20px;
-            min-width: 320px;
-            text-align: center;
-            transition: box-shadow 0.2s;
-        }
-        #newQuote {
-            background: #0078d7;
-            color: #fff;
-            border: none;
-            border-radius: 5px;
-            padding: 12px 28px;
-            font-size: 1rem;
-            cursor: pointer;
-            transition: background 0.2s;
-        }
-        #newQuote:hover {
-            background: #005fa3;
-        }
-        div[style] {
-            margin-top: 25px !important;
-            display: flex;
-            gap: 12px;
-            align-items: center;
-        }
-        input[type="file"] {
-            font-size: 1rem;
-        }
-        button {
-            font-family: inherit;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Dynamic Quote Generator</title>
+  <style>
+    body {
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(to right, #e0f7fa, #fce4ec);
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    h1 {
+      margin-top: 40px;
+      font-size: 2.4em;
+      color: #333;
+    }
+
+    #quoteDisplay {
+      background: #ffffff;
+      border-radius: 12px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+      padding: 30px 25px;
+      width: 90%;
+      max-width: 600px;
+      margin: 25px auto 15px auto;
+      font-size: 1.4em;
+      color: #444;
+      text-align: center;
+      min-height: 80px;
+      transition: all 0.3s ease-in-out;
+    }
+
+    #newQuote {
+      margin: 10px auto 25px auto;
+      padding: 12px 30px;
+      font-size: 1em;
+      background: #0078d4;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background 0.2s ease;
+    }
+
+    #newQuote:hover {
+      background: #005fa3;
+    }
+
+    label {
+      font-size: 1em;
+      margin-right: 8px;
+    }
+
+    #categoryFilter {
+      padding: 8px 12px;
+      font-size: 1em;
+      border-radius: 6px;
+      border: 1px solid #bbb;
+      margin-bottom: 20px;
+      background-color: #ffffff;
+      cursor: pointer;
+    }
+
+    .form-container,
+    .import-export-container {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    input[type="file"],
+    input[type="text"] {
+      padding: 10px;
+      font-size: 1em;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      margin: 5px;
+      width: 220px;
+      max-width: 90%;
+    }
+
+    .form-container button,
+    .import-export-container button {
+      font-size: 1em;
+      padding: 10px 20px;
+      margin: 5px;
+      border-radius: 6px;
+      border: none;
+      background-color: #6c63ff;
+      color: white;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .form-container button:hover,
+    .import-export-container button:hover {
+      background-color: #574b90;
+    }
+
+    @media (max-width: 600px) {
+      #quoteDisplay {
+        font-size: 1.1em;
+        padding: 20px;
+      }
+
+      input[type="text"] {
+        width: 90%;
+      }
+    }
+  </style>
 </head>
 <body>
-    <h1>Dynamic Quote Generator</h1>
 
-    <!-- Quote display -->
-    <div id="quoteDisplay">Click the button to see a quote</div>
-    <button id="newQuote">Show New Quote</button>
+  <h1>Dynamic Quote Generator</h1>
 
-    <!-- Import/export buttons -->
-    <div style="margin-top: 15px;">
-        <input type="file" id="importFile" accept=".json" onchange="importFromJsonFile(event)" />
-        <button onclick="exportToJsonFile()">Export Quotes as JSON</button>
-    </div>
+  <!-- Category filter -->
+  <div class="form-container">
+    <label for="categoryFilter">Filter by Category:</label>
+    <select id="categoryFilter" onchange="filterQuotes()">
+      <option value="all">All Categories</option>
+    </select>
+  </div>
 
-    <!-- Form will be created dynamically -->
-    <script src="script.js"></script>
+  <!-- Quote display -->
+  <div id="quoteDisplay">Click the button to see a quote</div>
+  <button id="newQuote">Show New Quote</button>
+
+  <!-- Import/export -->
+  <div class="import-export-container">
+    <input type="file" id="importFile" accept=".json" onchange="importFromJsonFile(event)" />
+    <button onclick="exportToJsonFile()">Export Quotes as JSON</button>
+  </div>
+
+  <!-- The quote form is dynamically added by JavaScript -->
+  <script src="script.js"></script>
 </body>
 </html>
